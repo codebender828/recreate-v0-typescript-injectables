@@ -27,8 +27,11 @@
       "@nuxt/types",
       "@nuxtjs/axios",
       "@types/node"
-    ]
+    ],
   },
+  "include": [
+    "theme.d.ts"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",

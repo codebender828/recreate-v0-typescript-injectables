@@ -106,8 +106,10 @@ import {
   CFlex,
   CHeading
 } from '@chakra-ui/vue'
+import Vue from 'vue'
+import { ChakraTheme } from '~/theme'
 
-export default {
+export default Vue.extend({
   name: 'App',
   components: {
     CBox,
@@ -126,7 +128,7 @@ export default {
     CFlex,
     CHeading
   },
-  inject: ['$chakraColorMode', '$toggleColorMode'],
+  inject: ['$chakraColorMode', '$toggleColorMode', '$chakraTheme'],
   data () {
     return {
       showModal: false,
@@ -146,12 +148,16 @@ export default {
     colorMode () {
       return this.$chakraColorMode()
     },
-    theme () {
+    theme (): ChakraTheme {
       return this.$chakraTheme()
     },
     toggleColorMode () {
       return this.$toggleColorMode
     }
+  },
+  mounted() {
+    const theme = (this as any).theme as ChakraTheme
+    console.log(JSON.stringify(theme, null, 2))
   },
   methods: {
     showToast () {
@@ -164,5 +170,5 @@ export default {
       })
     }
   }
-}
+})
 </script>
